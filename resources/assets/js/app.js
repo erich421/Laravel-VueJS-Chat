@@ -7,8 +7,6 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -20,7 +18,25 @@ Vue.component('chat-message', require('./components/ChatMessage.vue'));
 Vue.component('chat-log', require('./components/ChatLog.vue'));
 Vue.component('chat-composer', require('./components/ChatComposer.vue'));
 
-
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        messages: [
+            {
+                message: 'Hey!',
+                user: "John Doe"
+            },
+            {
+                message: 'Hello!',
+                user: "Jane Doe"
+            }
+        ]
+    },
+    methods: {
+        addMessage(message) {
+            // Add to existing messages
+            this.messages.push(message);
+            // Persist to the database etc
+        }
+    }
 });
